@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: net.named_data.NDNFit.syncprotocol.TestGroupData
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4,357.997 sec <<< FAILURE! - in net.named_data.NDNFit.syncprotocol.TestGroupData
+GroupAndReadData(net.named_data.NDNFit.syncprotocol.TestGroupData)  Time elapsed: 4,357.99 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<3431> but was:<3432>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at net.named_data.NDNFit.syncprotocol.TestGroupData.GroupAndReadData(TestGroupData.java:69)
+
