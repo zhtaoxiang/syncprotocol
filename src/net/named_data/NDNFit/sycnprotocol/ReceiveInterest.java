@@ -5,6 +5,7 @@
  */
 package net.named_data.NDNFit.sycnprotocol;
 
+import java.io.IOException;
 import net.named_data.jndn.Data;
 import net.named_data.jndn.Face;
 import net.named_data.jndn.Interest;
@@ -36,26 +37,28 @@ public class ReceiveInterest implements OnInterestCallback {
             Data data = repo.readData(dataName);
             if (data != null) {
                 face.putData(data);
+                System.out.println(">> D: " + data.getContent().toString());
                 // If the cosumer requests for grouped data, then send Interest
                 // for confirmation
                 if (dataName.toUri().contains(Common.GROUP_DATA_COMPONENT)) {
                     Interest interestForConfirm = new Interest(new Name(
                             NetworkConnection.confirmDataPrefix)
                             .append(interest.getName().get(-1)));
-                    interestForConfirm.setInterestLifetimeMilliseconds(1000);
+                    interestForConfirm.setInterestLifetimeMilliseconds(4000);
                     interestForConfirm.setMustBeFresh(true);
                     // Wait some time for the remote client to take some action
                     Thread.sleep(100);
                     face.expressInterest(interestForConfirm, onData, onTimeout);
+                    System.out.println(">> I: " + interestForConfirm.toUri());
                 }
             }
-        } catch (Exception ex) {
+        } catch (IOException | InterruptedException ex) {
             System.out.println("exception: " + ex.getMessage());
         }
     }
 
-    private Repo repo;
-    private Face face;
-    private OnData onData;
-    private OnTimeout onTimeout;
+    private final Repo repo;
+    private final Face face;
+    private final OnData onData;
+    private final OnTimeout onTimeout;
 }

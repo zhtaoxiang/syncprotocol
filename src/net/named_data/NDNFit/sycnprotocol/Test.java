@@ -5,19 +5,16 @@
  */
 package net.named_data.NDNFit.sycnprotocol;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.channels.SocketChannel;
+import net.named_data.jndn.encoding.WireFormat;
 
 /**
  *
  * @author zht
  */
 public class Test {
-    public static void main(String[] args) throws IOException {
-        SocketChannel channel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 6363));
-        System.out.println(channel.getLocalAddress());
-        System.out.println(channel.getRemoteAddress());
+    public static void main(String[] args){  
+        WireFormat defaultWireFormat = WireFormat.getDefaultWireFormat();
+        System.out.println(defaultWireFormat);
     }
     
 }

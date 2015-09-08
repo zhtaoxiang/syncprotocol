@@ -21,7 +21,7 @@ public class ReceiveData implements OnData {
 
     @Override
     public void onData(Interest interest, Data data) {
-        System.out.println("Got data packet with name " + data.getName().toUri());
+        System.out.println("<< D: " + data.getName().toUri());
         // Delete grouped data
         
         //

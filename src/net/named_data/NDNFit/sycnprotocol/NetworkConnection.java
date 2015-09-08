@@ -5,12 +5,15 @@
  */
 package net.named_data.NDNFit.sycnprotocol;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import net.named_data.jndn.Face;
 import net.named_data.jndn.Name;
+import net.named_data.jndn.encoding.EncodingException;
 import net.named_data.jndn.security.KeyChain;
+import net.named_data.jndn.security.SecurityException;
 import net.named_data.jndn.security.identity.IdentityManager;
 import net.named_data.jndn.security.identity.MemoryIdentityStorage;
 import net.named_data.jndn.security.identity.MemoryPrivateKeyStorage;
@@ -81,7 +84,8 @@ public class NetworkConnection {
                 Thread.sleep(5);
             }
 
-        } catch (Exception e) {
+        } catch (SecurityException | IOException | EncodingException 
+                | InterruptedException e) {
             System.out.println("exception: " + e.getMessage());
         }
     }
